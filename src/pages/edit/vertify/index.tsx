@@ -3,23 +3,24 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import SideBar from "@/component/sideBar";
 import "./index.scss";
+// const BASEURL = "https://blog.soundheart.cn/api/";
+const BASEURL = "http://localhost:8000/api/";
+
 const App = () => {
   const [pwd, setPwd] = useState<string>("");
   const router = useRouter();
   const judgePass = () => {
-    console.log("jjj");
-    axios
-      .get(`http://localhost:8000/user/vertify?password=${pwd}`)
-      .then((res) => {
-        if (res.data.code === 200) {
-          localStorage.setItem("token", res.data.data.token);
-          router.push("/edit");
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("暂无权限");
-      });
+    // console.log("jjj");
+    // axios.get(`${BASEURL}user/vertify?password=${pwd}`).then((res) => {
+    // if (res.data.code === 200) {
+    // localStorage.setItem("token", res.data.data.token);
+    router.push("/edit");
+    // }
+    // });
+    // .catch((error) => {
+    //   console.log(error);
+    //   alert("暂无权限");
+    // });
   };
   return (
     <>

@@ -4,6 +4,9 @@ import { GetStaticProps } from "next";
 import Article from "@/component/allArticle";
 import { articleType } from "@/types";
 
+// const BASEURL = "https://blog.soundheart.cn/api/";
+const BASEURL = "http://localhost:8000/api/";
+
 const App: React.FC<{
   list: articleType[];
 }> = (props) => {
@@ -47,12 +50,14 @@ export const getStaticProps: GetStaticProps = async (
   props: {
     list: articleType[];
   };
+  revalidate: number;
 }> => {
-  const data = await fetch("http://localhost:8000/article/list");
+  const data = await fetch(`${BASEURL}article/list`);
   const res = await data.json();
   return {
     props: {
       list: res.data,
     },
+    revalidate: 60,
   };
 };

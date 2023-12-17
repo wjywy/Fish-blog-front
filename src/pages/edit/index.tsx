@@ -7,9 +7,6 @@ import { useEffect } from "react";
 const App: React.FC = () => {
   const router = useRouter();
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
-      router.push("/edit/vertify");
-    }
   }, []);
   return (
     <>

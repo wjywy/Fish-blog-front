@@ -1,9 +1,9 @@
 import "./index.scss";
 import { useRouter } from "next/router";
 import { useState } from "react";
+
 const App: React.FC = () => {
   const router = useRouter();
-  const [check, setCheck] = useState<string>("");
   let data = [
     {
       value: "Fish的博客",
@@ -26,8 +26,8 @@ const App: React.FC = () => {
       router: "author",
     },
   ];
-  const toShow = (value: number, route: string) => {
-    setCheck(route);
+  const toShow = (value: string, route: string) => {
+    window.localStorage.setItem("sidebarName", value);
     router.push(`/${route}`);
   };
   const judgeShow = () => {
@@ -42,12 +42,7 @@ const App: React.FC = () => {
                     className={
                       index === 0 ? "home_tab_author" : "home_tab_title"
                     }
-                    // style={
-                    //   check === item.router
-                    //     ? { color: "#ffc402" }
-                    //     : { color: "" }
-                    // }
-                    onClick={() => toShow(index, item.router)}
+                    onClick={() => toShow(item.value, item.router)}
                   >
                     {item.value}
                   </div>

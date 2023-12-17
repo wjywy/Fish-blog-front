@@ -15,7 +15,6 @@ const App: React.FC<{
           return (
             <Fragment key={`${index}${item.createTime}`}>
               <Introduce
-                // title={item.introduce.title}
                 createTime={String(item.createTime).slice(0, 10)}
                 description={item.description}
                 id={String(item.id)}

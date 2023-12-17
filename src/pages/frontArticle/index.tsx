@@ -4,6 +4,8 @@ import { GetStaticProps } from "next";
 import Article from "@/component/allArticle";
 import { articleType } from "@/types";
 
+const BASEURL = "http://localhost:8000/api/";
+
 const App: React.FC<{
   list: articleType[];
 }> = (props) => {
@@ -42,11 +44,12 @@ const App: React.FC<{
 export default App;
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  const data = await fetch("http://localhost:8000/article/frontList?type=前端");
+  const data = await fetch(`${BASEURL}article/frontList?type=前端`);
   const res = await data.json();
   return {
     props: {
       list: res.data,
     },
+    revalidate: 60,
   };
 };
